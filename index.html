@@ -1,297 +1,484 @@
 <!DOCTYPE html>
 <html lang="nl">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Lab - Portfolio Joppe Janssens</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
 
     <style>
-      /* ---------- KLEUREN & VARS ---------- */
-      :root {
-        --clr-bg: #f9fafb;
-        --clr-primary: hsl(119, 61%, 23%);
-        --clr-text: #0f172a;
-        --radius: 0.75rem;
-        --space-s: 0.5rem;
-        --space-m: 1rem;
-        --space-l: 2rem;
-        --sidebar-w: 220px;
-      }
+        :root {
+            --clr-bg: #f9fafb;
+            --clr-primary: hsl(119, 61%, 23%);
+            --clr-text: #0f172a;
+            --radius: 0.75rem;
+            --space-s: 0.5rem;
+            --space-m: 1rem;
+            --space-l: 2rem;
+            --sidebar-w: 220px;
+        }
 
-      /* ---------- RESET ---------- */
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      body {
-        font-family: "Inter", system-ui, sans-serif;
-        line-height: 1.6;
-        color: var(--clr-text);
-        background: var(--clr-bg);
-      }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-      body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("images/background.JPG") center/cover no-repeat;
-  z-index: -1;  
+        body {
+            font-family: "Inter", system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--clr-text);
+            background: var(--clr-bg);
+        }
 
-   
-}
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("images/background.JPG") center/cover no-repeat;
+            z-index: -1;
 
-      a { color: var(--clr-primary); text-decoration: none; transition: color .15s }
-      a:hover { opacity: .8; }
 
-      /* ---------- CENTRALE PAGINA ---------- */
-      .page {
-  background: rgba(255, 255, 255, 0.8);   /* 0.9 = 90% dekking */
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;  
-}
+        }
 
-      @media (max-width: 900px) {
-        .sidebar { display: none; }
-        .page    { max-width: 100%; }
-      }
+        a {
+            color: var(--clr-primary);
+            text-decoration: none;
+            transition: color .15s
+        }
 
-      /* ---------- NAV ---------- */
-      nav {
-        background: #ffffffee;
-        backdrop-filter: blur(6px);
-        position: sticky; top: 0; z-index: 999;
-        box-shadow: 0 2px 8px rgba(0,0,0,.05);
-      }
-      nav ul {
-        list-style: none;
-        display: flex; gap: var(--space-l);
-        justify-content: center;
-        padding: var(--space-m) var(--space-l);
-        font-weight: 600;
-      }
+        a:hover {
+            opacity: .8;
+        }
 
-      /* ---------- TYPO & SECTIONS ---------- */
-      section { padding: calc(var(--space-l) * 2) var(--space-l); max-width: 1200px; margin-inline: auto; }
-      h1,h2,h3 { font-weight: 800; line-height:1.2; }
-      h1 { font-size: clamp(2rem,5vw,3.25rem); margin-bottom: var(--space-l); text-align:center; }
-      h2 { font-size: clamp(1.5rem,3.5vw,2.25rem); margin-bottom: var(--space-m); }
-      p  { margin-bottom: var(--space-m); }
+        .page {
+            background: rgba(255, 255, 255, 0.8);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
 
-      /* ---------- HERO & Pijl ---------- */
-      .hero { display: grid; place-items:center; text-align:center; min-height:60vh; }
-      .scroll-arrow { margin-top: var(--space-l); animation: bounce 1.8s ease-in-out infinite; }
-      @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(10px);} }
-      .scroll-arrow svg { width:56px; height:56px; stroke:var(--clr-primary); fill:none; stroke-width:3; }
+        @media (max-width: 900px) {
+            .sidebar {
+                display: none;
+            }
 
-      /* ---------- BLOG CARDS ---------- */
-      .visits-grid { display:flex; flex-direction:column; gap:calc(var(--space-l)*1.5); }
-      .visit-card {
-        background:#fff; border-radius:var(--radius);
-        box-shadow:0 6px 18px rgba(0,0,0,.06);
-        overflow:hidden; display:flex; flex-direction:column;
-      }
-      .visit-card figure { aspect-ratio:16/9; overflow:hidden; }
-      .visit-card img { width:100%; height:100%; object-fit:cover; }
-      .visit-content { padding:var(--space-m); }
-      .visit-content h3 { font-size:1.25rem; margin-bottom:var(--space-s); }
-      .tag {
-        display:inline-block; background:var(--clr-primary); color:#fff;
-        font-size:.75rem; font-weight:600; padding:.25rem .6rem; border-radius:999px;
-        margin-bottom:var(--space-s);
-      }
+            .page {
+                max-width: 100%;
+            }
+        }
 
-      /* ---------- REFLECTION BOX ---------- */
-      .reflection {
-        background:#fff; border-radius:var(--radius);
-        padding:var(--space-l); box-shadow:0 6px 18px rgba(0,0,0,.06);
-      }
-      .reflection ul { list-style:disc inside; margin-left:var(--space-m); }
+        nav {
+            background: #ffffffee;
+            backdrop-filter: blur(6px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+        }
 
-      #kopenhagen figure {
-  margin: var(--space-m) 0;            
-  text-align: center;            
-}
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: var(--space-l);
+            justify-content: center;
+            padding: var(--space-m) var(--space-l);
+            font-weight: 600;
+        }
 
-#kopenhagen img {
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--radius);
-  box-shadow: 0 4px 12px rgba(0,0,0,.05);
-}
+        section {
+            padding: calc(var(--space-l) * 2) var(--space-l);
+            max-width: 1200px;
+            margin-inline: auto;
+        }
 
-      footer { margin:var(--space-l) 0; text-align:center; font-size:.875rem; color:#64748b; }
+        h1,
+        h2,
+        h3 {
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            margin-bottom: var(--space-l);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            margin-bottom: var(--space-m);
+        }
+
+        p {
+            margin-bottom: var(--space-m);
+        }
+
+        .hero {
+            display: grid;
+            place-items: center;
+            text-align: center;
+            min-height: 60vh;
+        }
+
+        .scroll-arrow {
+            margin-top: var(--space-l);
+            animation: bounce 1.8s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        .scroll-arrow svg {
+            width: 56px;
+            height: 56px;
+            stroke: var(--clr-primary);
+            fill: none;
+            stroke-width: 3;
+        }
+
+        .visits-grid {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--space-l)*1.5);
+        }
+
+        .visit-card {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .visit-card figure {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .visit-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .visit-content {
+            padding: var(--space-m);
+        }
+
+        .visit-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-s);
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--clr-primary);
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 600;
+            padding: .25rem .6rem;
+            border-radius: 999px;
+            margin-bottom: var(--space-s);
+        }
+
+        .reflection {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: var(--space-l);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+        }
+
+        .reflection ul {
+            list-style: disc inside;
+            margin-left: var(--space-m);
+        }
+
+        #kopenhagen figure {
+            margin: var(--space-m) 0;
+            text-align: center;
+        }
+
+        #kopenhagen img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .05);
+        }
+
+        footer {
+            margin: var(--space-l) 0;
+            text-align: center;
+            font-size: .875rem;
+            color: #64748b;
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
 
     <div class="page">
 
-      <nav>
-        <ul>
-          <li><a href="#intro">Intro</a></li>
-          <li><a href="#visits">Bedrijfsbezoeken</a></li>
-          <li><a href="#kopenhagen">Kopenhagen</a></li>
-          <li><a href="#reflection">Reflectie</a></li>
-        </ul>
-      </nav>
+        <nav>
+            <ul>
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#visits">Bedrijfsbezoeken</a></li>
+                <li><a href="#kopenhagen">Kopenhagen</a></li>
+                <li><a href="#reflection">Reflectie</a></li>
+            </ul>
+        </nav>
 
-      <section id="intro" class="hero">
-        <div>
-          <h1>Witness greatness beyond this point.</h1>
-          <p>Yo! Deze pagina is zowel een schoolopdracht als een nostalgische trip down memory lane</p>
-          <div class="scroll-arrow">
-            <svg viewBox="0 0 24 24"><path d="M5 9l7 7 7-7"/></svg>
-          </div>
-        </div>
-      </section>
-
-      <section id="visits">
-        <h2>Bedrijfsbezoeken & Praktijkactiviteiten</h2>
-        <div class="visits-grid">
-
-          <article class="visit-card">
-            <figure>
-              <img src="https://prod-img.gva.be/public/incoming/xoeg2a-de-skybar-bevindt-zich-op-de-tiende-verdieping-van-the-beacon./alternates/WIDTH_1440/De%20skybar%20bevindt%20zich%20op%20de%20tiende%20verdieping%20van%20The%20Beacon." alt="Bezoek aan The Beacon">
-            </figure>
-            <div class="visit-content">
-              <span class="tag">19 februari 2025</span>
-              <h3>The Beacon beckons</h3>
-              <p>
-                Tijdens het event in <strong>The Beacon</strong>—een Antwerpse innovatiehub die startups en onderzoekspartners samenbrengt rond digitale en duurzame oplossingen—kregen we eerst een blik op hun groeiende community van ±100 techbedrijven en de vele netwerk- en inspiratie­momenten die zij organiseren. <br><br>
-                Vervolgens pitchte <em>Dashdoc</em>, een Franse scale-up die met zijn cloud-TMS, eCMR-app en timeslot-tool transport­planners tot 7 minuten per order laat besparen en tegelijk papieren vrachtbrieven elimineert. <br><br>
-                <em>Dockflow</em> liet zien hoe hun “Logistics Enablement Platform” via realtime container-tracking, automatiseringen en een klantsportaal demurrage­kosten met gemiddeld $300 k per jaar kan terugdringen en zelfs temperatuur­afwijkingen in fruitcontainers detecteert. <br><br>
-                Tot slot presenteerden imec-onderzoekers de projecten <em>PILL</em> en <em>SYTADEL</em>, die met data-spaces en synchromodale routeplanning een gedeeld, vertrouwd netwerkbeeld creëren zodat logistieke spelers hun goederenstromen dynamisch kunnen herrouteren.
-              </p>
-              <p>
-                <strong>Belangrijkste inzicht:</strong>
-                <em>Hoewel dit voor mij het minst boeiende bedrijfsbezoek was, blijft vooral bij hoe sterk de Haven van Antwerpen moderniseert—van drones die kades inspecteren tot geavanceerde data-platformen voor snellere en veiligere (drugs)controles—en hoe zulke technologieën de toekomst van de logistiek vormgeven.</em>
-              </p>
+        <section id="intro" class="hero">
+            <div>
+                <h1>Witness greatness beyond this point.</h1>
+                <p>Yo! Deze pagina is zowel een schoolopdracht als een nostalgische trip down memory lane</p>
+                <div class="scroll-arrow">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M5 9l7 7 7-7" />
+                    </svg>
+                </div>
             </div>
-          </article>
+        </section>
 
-          <article class="visit-card">
-            <figure><img src="images/tommeke.jpg" alt="Tom Vermeylen"></figure>
-            <div class="visit-content">
-              <span class="tag">28 februari 2025</span>
-              <h3>Hidden in plain sight</h3>
-              <p>
-                Voor onze tweede praktijkopdracht kropen we in de huid van digitale <strong>stadsdetectives</strong>: bewapend met smartphone doorkruisten we in groepjes de volledige binnenring van Mechelen om zo veel mogelijk zichtbare databronnen in kaart te brengen – van bewakingscamera’s, slimme parkeerautomaten en afvalcontainers tot 5G-zendmasten en luchtkwaliteitssensoren. <br><br>
-                Hoewel ik op voorhand al vermoedde hoe sterk de stad tegenwoordig ‘gedigitaliseerd’ is, schrok ik toch van het absurde aantal camera’s dat letterlijk elke straathoek observeert. Dit riep meteen vragen op over de omgang met die enorme hoeveelheid beeldmateriaal: wie beheert het, hoe lang wordt het bewaard en voor welke doeleinden kan het nog worden hergebruikt? <br><br>
-                Tegelijk liet de opdracht duidelijk zien hoe onzichtbare infrastructuur een cruciale rol speelt in mobiliteit, afvalbeheer en openbare veiligheid, en hoe belangrijk het is dat burgers zich bewust zijn van de data-ecosystemen die hun dagelijkse leven stilaan vormgeven.
-              </p>
-              <figure><img src="images/Databronnen.PNG" alt="Databronnen speurtocht"></figure>
-              <p>
-                Kort hierna volgde een ethisch debat met <strong>Tom Vermeylen</strong> (stafmedewerker maatschappelijke innovatie, Regio Mechelen). Hij liet ons kritisch reflecteren op de impact van al die sensoren en camera’s op privacy en vertrouwen. Opvallend was dat onderzoek aantoont dat mensen zich niet automatisch veiliger voelen door camerabewaking – integendeel, de overvloed aan lenzen riep juist nieuwe vragen op over toezicht, databeheer en mogelijke misbruiken.
-              </p>
+        <section id="visits">
+            <h2>Bedrijfsbezoeken & Praktijkactiviteiten</h2>
+            <div class="visits-grid">
+
+                <article class="visit-card">
+                    <figure>
+                        <img src="https://prod-img.gva.be/public/incoming/xoeg2a-de-skybar-bevindt-zich-op-de-tiende-verdieping-van-the-beacon./alternates/WIDTH_1440/De%20skybar%20bevindt%20zich%20op%20de%20tiende%20verdieping%20van%20The%20Beacon."
+                            alt="Bezoek aan The Beacon">
+                    </figure>
+                    <div class="visit-content">
+                        <span class="tag">19 februari 2025</span>
+                        <h3>The Beacon beckons</h3>
+                        <p>
+                            Tijdens het event in <strong>The Beacon</strong>—een Antwerpse innovatiehub die startups en
+                            onderzoekspartners samenbrengt rond digitale en duurzame oplossingen—kregen we eerst een
+                            blik op hun groeiende community van ±100 techbedrijven en de vele netwerk- en
+                            inspiratie­momenten die zij organiseren. <br><br>
+                            Vervolgens pitchte <em>Dashdoc</em>, een Franse scale-up die met zijn cloud-TMS, eCMR-app en
+                            timeslot-tool transport­planners tot 7 minuten per order laat besparen en tegelijk papieren
+                            vrachtbrieven elimineert. <br><br>
+                            <em>Dockflow</em> liet zien hoe hun “Logistics Enablement Platform” via realtime
+                            container-tracking, automatiseringen en een klantsportaal demurrage­kosten met gemiddeld
+                            $300 k per jaar kan terugdringen en zelfs temperatuur­afwijkingen in fruitcontainers
+                            detecteert. <br><br>
+                            Tot slot presenteerden imec-onderzoekers de projecten <em>PILL</em> en <em>SYTADEL</em>, die
+                            met data-spaces en synchromodale routeplanning een gedeeld, vertrouwd netwerkbeeld creëren
+                            zodat logistieke spelers hun goederenstromen dynamisch kunnen herrouteren.
+                        </p>
+                        <p>
+                            <strong>Belangrijkste inzicht:</strong>
+                            <em>Hoewel dit voor mij het minst boeiende bedrijfsbezoek was, blijft vooral bij hoe sterk
+                                de Haven van Antwerpen moderniseert—van drones die kades inspecteren tot geavanceerde
+                                data-platformen voor snellere en veiligere (drugs)controles—en hoe zulke technologieën
+                                de toekomst van de logistiek vormgeven.</em>
+                        </p>
+                    </div>
+                </article>
+
+                <article class="visit-card">
+                    <figure><img src="images/tommeke.jpg" alt="Tom Vermeylen"></figure>
+                    <div class="visit-content">
+                        <span class="tag">28 februari 2025</span>
+                        <h3>Hidden in plain sight</h3>
+                        <p>
+                            Voor onze tweede praktijkopdracht kropen we in de huid van digitale
+                            <strong>stadsdetectives</strong>: bewapend met smartphone doorkruisten we in groepjes de
+                            volledige binnenring van Mechelen om zo veel mogelijk zichtbare databronnen in kaart te
+                            brengen – van bewakingscamera’s, slimme parkeerautomaten en afvalcontainers tot
+                            5G-zendmasten en luchtkwaliteitssensoren. <br><br>
+                            Hoewel ik op voorhand al vermoedde hoe sterk de stad tegenwoordig ‘gedigitaliseerd’ is,
+                            schrok ik toch van het absurde aantal camera’s dat letterlijk elke straathoek observeert.
+                            Dit riep meteen vragen op over de omgang met die enorme hoeveelheid beeldmateriaal: wie
+                            beheert het, hoe lang wordt het bewaard en voor welke doeleinden kan het nog worden
+                            hergebruikt? <br><br>
+                            Tegelijk liet de opdracht duidelijk zien hoe onzichtbare infrastructuur een cruciale rol
+                            speelt in mobiliteit, afvalbeheer en openbare veiligheid, en hoe belangrijk het is dat
+                            burgers zich bewust zijn van de data-ecosystemen die hun dagelijkse leven stilaan vormgeven.
+                        </p>
+                        <figure><img src="images/Databronnen.PNG" alt="Databronnen speurtocht"></figure>
+                        <p>
+                            Kort hierna volgde een ethisch debat met <strong>Tom Vermeylen</strong> (stafmedewerker
+                            maatschappelijke innovatie, Regio Mechelen). Hij liet ons kritisch reflecteren op de impact
+                            van al die sensoren en camera’s op privacy en vertrouwen. Opvallend was dat onderzoek
+                            aantoont dat mensen zich niet automatisch veiliger voelen door camerabewaking – integendeel,
+                            de overvloed aan lenzen riep juist nieuwe vragen op over toezicht, databeheer en mogelijke
+                            misbruiken.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="visit-card">
+                    <figure><img src="images/intellus.jpeg" alt="Intellus"></figure>
+                    <div class="visit-content">
+                        <span class="tag">14 maart 2025</span>
+                        <h3>SAPpig</h3>
+                        <p>
+                            Bij <strong>Intellus</strong> kregen we vier snelle deep-dives in projecten van partners die
+                            er gehuisvest zijn, maar vooral de sessie over <em>SAP-architectuur</em> maakte indruk. De
+                            consultant liet zien hoe een robuust SAP-landschap het kloppend hart vormt van een
+                            grootschalige onderneming: van de keuze tussen on-premise, cloud of hybride omgevingen tot
+                            het opzetten van duidelijke data-flows, autorisatiemodellen en fail-overscenario’s. <br><br>
+                            Hij benadrukte hoeveel tijd, budget én interdisciplinaire afstemming er kruipt in zo’n
+                            traject. Tegelijk kregen we inzicht in de verschillende migratie-opties naar S/4HANA en hoe
+                            die elk hun risico-profiel en business-impact hebben. Deze sessie maakte duidelijk dat goede
+                            SAP-architectuur niet louter een IT-kwestie is, maar een strategisch fundament dat de
+                            dagelijkse processen en toekomstige groei van een organisatie bepaalt.
+                        </p>
+                        <figure><img src="images/SAP.jpeg" alt="SAP"></figure>
+                    </div>
+                </article>
+
+                <article class="visit-card">
+                    <figure><img src="images/sentigrate.JPG" alt="Sentigrate"></figure>
+                    <div class="visit-content">
+                        <span class="tag">21 maart 2025</span>
+                        <h3>The future is now, old man</h3>
+                        <p>
+                            Bij <strong>Sentigrate</strong> zagen we hoe data-science en AI concrete meerwaarde creëren
+                            in onder andere de gezondheidszorg. Het Leuvense bedrijf bouwt volledige
+                            sensordataplatformen—van edge-connectiviteit en veilige cloud-opslag tot
+                            machine-learning-modellen—en werkt zo met diverse medtech-scale-ups samen. <br><br>
+                            Twee cases sprongen er voor mij uit: <em>Axiles Bionics</em>, dat bionische voeten
+                            ontwikkelt en dankzij Sentigrate nu een schaalbare cloud-architectuur heeft waarin realtime
+                            sensordata kan worden opgeslagen en geanalyseerd, en <em>Intelliprove</em>, dat via een
+                            smartphonecamera in minder dan een minuut vitale biomarkers uit een gezicht detecteert. Deze
+                            voorbeelden toonden glashelder hoe een robuuste data-pipeline patiëntenmonitoring kan
+                            versnellen en therapieën persoonlijker maakt.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="visit-card">
+                    <figure><img src="images/toren.JPG" alt="VRT-toren"></figure>
+                    <div class="visit-content">
+                        <span class="tag">28 maart 2025</span>
+                        <h3>Behind the scenes</h3>
+                        <p>
+                            Bij de <strong>VRT</strong> startten we met presentaties over hoe AI en data-analyse door
+                            het volledige nieuws- en tv-proces vloeien. Daarna volgde een rondleiding langs decoropslag,
+                            montagesuites en zelfs het iconische café van <em>F.C. De Kampioenen</em>. Het was graaf om
+                            te beseffen dat in elke productiefase, hoe creatief ook, data een stille motor is — van
+                            realtime kijkcijfers tot metadata die archiefbeelden vindbaar maakt. Dit bezoek maakte
+                            duidelijk dat VRT data-gedreven werkt van concept tot uitzending en zo continu zijn content
+                            en publieks­ervaring verbetert.
+                        </p>
+                        <figure><img src="images/jarnochad.JPG" alt="Jarno in chad pose"></figure>
+                    </div>
+                </article>
+
+                <article class="visit-card">
+                    <figure><img src="images/colruyt.jpeg" alt="Colruyt"></figure>
+                    <div class="visit-content">
+                        <span class="tag">4 april 2025</span>
+                        <h3>Coolruyt</h3>
+                        <p>
+                            Bij Colruyt Group vond een intensieve data-hackathon plaats. Helaas kon ik er niet fysiek
+                            bij zijn, maar uit de verslagen bleek hoe cruciaal die rolverdeling is om binnen 24 uur van
+                            ruwe datasets tot een overtuigende business-case te komen. Het bezoek onderstreepte nogmaals
+                            dat datagedreven succes niet alleen afhangt van goede algoritmen, maar net zozeer van
+                            heldere strategie en organisatie.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="visit-card">
+                    <figure><img src="images/geel.jpeg" alt="Geel"></figure>
+                    <div class="visit-content">
+                        <span class="tag">9 mei 2025</span>
+                        <h3>Campus Geel - toch niet zo geel</h3>
+                        <p>
+                            Ons bezoek aan het lab in Geel heeft inmiddels een tastbaar resultaat opgeleverd. We hebben
+                            de ruwe LifeSnaps-Fitbit-exports in MongoDB geïmporteerd, de belangrijkste velden
+                            opgeschoond en in een Jupyter-notebook de eerste features gebouwd rond hartslag, slaap en de
+                            zelfgerapporteerde stemmingen. Met een voorlopig model zien we al duidelijke verbanden, al
+                            vragen de hyperparameters en enkele outliers nog extra aandacht in een volgende
+                            iteratie.<br><br> Het project toonde niet alleen hoe grillig echte “in-the-wild” data kan
+                            zijn—maar liet ons ook ervaren hoe overweldigend een gigantische dataset aanvankelijk is, en
+                            hoe waardevol het leerproces wordt zodra je leert die ruwe stroom te interpreteren, te
+                            filteren en uiteindelijk te gebruiken Dankzij Glen Debards documentatie en voorbeeldquery’s
+                            konden we het hele traject—download, MongoDB, pandas, eerste model—vlot afronden, zodat er
+                            nu een solide basis ligt voor verdere verfijning.
+                        </p>
+                    </div>
+                </article>
+
             </div>
-          </article>
+        </section>
 
-          <article class="visit-card">
-            <figure><img src="images/intellus.jpeg" alt="Intellus"></figure>
-            <div class="visit-content">
-              <span class="tag">14 maart 2025</span>
-              <h3>SAPpig</h3>
-              <p>
-                Bij <strong>Intellus</strong> kregen we vier snelle deep-dives in projecten van partners die er gehuisvest zijn, maar vooral de sessie over <em>SAP-architectuur</em> maakte indruk. De consultant liet zien hoe een robuust SAP-landschap het kloppend hart vormt van een grootschalige onderneming: van de keuze tussen on-premise, cloud of hybride omgevingen tot het opzetten van duidelijke data-flows, autorisatiemodellen en fail-overscenario’s. <br><br>
-                Hij benadrukte hoeveel tijd, budget én interdisciplinaire afstemming er kruipt in zo’n traject. Tegelijk kregen we inzicht in de verschillende migratie-opties naar S/4HANA en hoe die elk hun risico-profiel en business-impact hebben. Deze sessie maakte duidelijk dat goede SAP-architectuur niet louter een IT-kwestie is, maar een strategisch fundament dat de dagelijkse processen en toekomstige groei van een organisatie bepaalt.
-              </p>
-              <figure><img src="images/SAP.jpeg" alt="SAP"></figure>
+        <section id="kopenhagen">
+            <h2>Studiereis Kopenhagen</h2>
+            <figure><img src="images/politiken.JPG" alt="Groepsfoto"></figure>
+            <p>
+                Tijdens onze tweedaagse hackathon in Kopenhagen – opgezet met Hogeschool KEA – doken we in de
+                business-case van krant Politiken, die kampt met dalende abonneecijfers.<br><br>
+            </p>
+            <figure><img src="images/groups.JPG" alt="Groepsfoto"></figure>
+            <p>
+                In gemengde teams kwamen we met frisse ideeën: flexibele à-la-carte-abonnementen waarbij lezers enkel
+                voor hun favoriete nieuws­genres betalen, AI-tools voor samenvattingen en leestips, scherpere
+                instapprijzen, een gerichte TikTok- en Instagram-strategie en een interactievere website met live-polls
+                en comment-threads.<br><br>
+            </p>
+            <figure><img src="images/chilling.JPG" alt="Groepsfoto"></figure>
+            <p>
+                Ik heb veel bijgeleerd maar het voornaamste is dat ik Copenhagen en ook mijn klasgenoten beter heb leren
+                kennen. Ik heb mij meer geamuseerd dan dat ik oorspronkelijk zou gedacht hebben en ik denk dat dit wel
+                echt hetgene is dat ik mee zal dragen naar de toekomst. Na mijn zesde jaars reis niet te hebben gehad
+                merkte ik dat ik iets had gemist dus bedankt hiervoor.
+            </p>
+            <figure><img src="images/groepsfoto.JPG" alt="Groepsfoto"></figure>
+        </section>
+
+        <section id="reflection">
+            <h2>Reflectie</h2>
+            <div class="reflection">
+                <p>
+                    In deze reflectie beschrijf ik hoe de bedrijfsbezoeken en praktijk­activiteiten mijn ontwikkeling
+                    als persoon hebben beïnvloed.
+                </p>
+                <ul>
+                    <li><strong>Wat heb ik geleerd?</strong> Ik heb geleerd hoe belangrijk en veelgebruikt data is en
+                        waarvoor dit kan dienen of dat dit nu in de zorgsector, IT of iets anders is. Bovendien kan ik
+                        nu beter data interpreteren dan voordien. Maar naast technische kennis heb ik ook sociale kennis
+                        verworven en helpt dit mij ontwikkelen als persoon.</li><br>
+                    <li><strong>Toepassing komend jaar</strong> Hopelijk door nu te beseffen waarvoor data gebruikt kan
+                        worden en op wat voor een schaal dit meestal gebeurd, kan dit mij meer motiveren in het komende
+                        semester.</li><br>
+                    <li><strong>Professionele groei</strong> Ik denk dat ik dit zowat beantwoord heb in de vorige
+                        paragrafen. Hopelijk is dat voldoende.</li><br>
+                    <li><strong>Toekomstige doelen</strong> Voorlopig zou ik gewoon willen afstuderen en kort daarna
+                        beginnen werken in de IT-sector alleen nog niet zeker hoe, waar of wat. Ik denk dat ik nogmaals
+                        voor de trial & error methode zal gaan...</li><br>
+                </ul>
             </div>
-          </article>
+        </section>
 
-          <article class="visit-card">
-            <figure><img src="images/sentigrate.JPG" alt="Sentigrate"></figure>
-            <div class="visit-content">
-              <span class="tag">21 maart 2025</span>
-              <h3>The future is now, old man</h3>
-              <p>
-                Bij <strong>Sentigrate</strong> zagen we hoe data-science en AI concrete meerwaarde creëren in onder andere de gezondheidszorg. Het Leuvense bedrijf bouwt volledige sensordataplatformen—van edge-connectiviteit en veilige cloud-opslag tot machine-learning-modellen—en werkt zo met diverse medtech-scale-ups samen. <br><br>
-                Twee cases sprongen er voor mij uit: <em>Axiles Bionics</em>, dat bionische voeten ontwikkelt en dankzij Sentigrate nu een schaalbare cloud-architectuur heeft waarin realtime sensordata kan worden opgeslagen en geanalyseerd, en <em>Intelliprove</em>, dat via een smartphonecamera in minder dan een minuut vitale biomarkers uit een gezicht detecteert. Deze voorbeelden toonden glashelder hoe een robuuste data-pipeline patiëntenmonitoring kan versnellen en therapieën persoonlijker maakt.
-              </p>
-            </div>
-          </article>
-
-          <article class="visit-card">
-            <figure><img src="images/toren.JPG" alt="VRT-toren"></figure>
-            <div class="visit-content">
-              <span class="tag">28 maart 2025</span>
-              <h3>Behind the scenes</h3>
-              <p>
-                Bij de <strong>VRT</strong> startten we met presentaties over hoe AI en data-analyse door het volledige nieuws- en tv-proces vloeien. Daarna volgde een rondleiding langs decoropslag, montagesuites en zelfs het iconische café van <em>F.C. De Kampioenen</em>. Het was graaf om te beseffen dat in elke productiefase, hoe creatief ook, data een stille motor is — van realtime kijkcijfers tot metadata die archiefbeelden vindbaar maakt. Dit bezoek maakte duidelijk dat VRT data-gedreven werkt van concept tot uitzending en zo continu zijn content en publieks­ervaring verbetert.
-              </p>
-              <figure><img src="images/jarnochad.JPG" alt="Jarno in chad pose"></figure>
-            </div>
-          </article>
-
-          <article class="visit-card">
-            <figure><img src="images/colruyt.jpeg" alt="Colruyt"></figure>
-            <div class="visit-content">
-              <span class="tag">4 april 2025</span>
-              <h3>Coolruyt</h3>
-              <p>
-                Bij Colruyt Group vond een intensieve data-hackathon plaats. Helaas kon ik er niet fysiek bij zijn, maar uit de verslagen bleek hoe cruciaal die rolverdeling is om binnen 24 uur van ruwe datasets tot een overtuigende business-case te komen. Het bezoek onderstreepte nogmaals dat datagedreven succes niet alleen afhangt van goede algoritmen, maar net zozeer van heldere strategie en organisatie.
-              </p>
-            </div>
-          </article>
-
-          <article class="visit-card">
-            <figure><img src="images/geel.jpeg" alt="Geel"></figure>
-            <div class="visit-content">
-              <span class="tag">9 mei 2025</span>
-              <h3>Campus Geel - toch niet zo geel</h3>
-              <p>
-                Ons bezoek aan het lab in Geel heeft inmiddels een tastbaar resultaat opgeleverd. We hebben de ruwe LifeSnaps-Fitbit-exports in MongoDB geïmporteerd, de belangrijkste velden opgeschoond en in een Jupyter-notebook de eerste features gebouwd rond hartslag, slaap en de zelfgerapporteerde stemmingen. Met een voorlopig model zien we al duidelijke verbanden, al vragen de hyperparameters en enkele outliers nog extra aandacht in een volgende iteratie.<br><br> Het project toonde niet alleen hoe grillig echte “in-the-wild” data kan zijn—maar liet ons ook ervaren hoe overweldigend een gigantische dataset aanvankelijk is, en hoe waardevol het leerproces wordt zodra je leert die ruwe stroom te interpreteren, te filteren en uiteindelijk te gebruiken Dankzij Glen Debards documentatie en voorbeeldquery’s konden we het hele traject—download, MongoDB, pandas, eerste model—vlot afronden, zodat er nu een solide basis ligt voor verdere verfijning.
-              </p>
-            </div>
-          </article>
-
-        </div>
-      </section>
-
-      <section id="kopenhagen">
-        <h2>Studiereis Kopenhagen</h2>
-        <figure><img src="images/politiken.JPG" alt="Groepsfoto"></figure>
-        <p>
-          Tijdens onze tweedaagse hackathon in Kopenhagen – opgezet met Hogeschool KEA – doken we in de business-case van krant Politiken, die kampt met dalende abonneecijfers.<br><br>
-        </p>
-        <figure><img src="images/groups.JPG" alt="Groepsfoto"></figure>
-        <p>  
-        In gemengde teams kwamen we met frisse ideeën: flexibele à-la-carte-abonnementen waarbij lezers enkel voor hun favoriete nieuws­genres betalen, AI-tools voor samenvattingen en leestips, scherpere instapprijzen, een gerichte TikTok- en Instagram-strategie en een interactievere website met live-polls en comment-threads.<br><br>
-        </p>
-        <figure><img src="images/chilling.JPG" alt="Groepsfoto"></figure>
-        <p>
-         Ik heb veel bijgeleerd maar het voornaamste is dat ik Copenhagen en ook mijn klasgenoten beter heb leren kennen. Ik heb mij meer geamuseerd dan dat ik oorspronkelijk zou gedacht hebben en ik denk dat dit wel echt hetgene is dat ik mee zal dragen naar de toekomst. Na mijn zesde jaars reis niet te hebben gehad merkte ik dat ik iets had gemist dus bedankt hiervoor.
-        </p>
-        <figure><img src="images/groepsfoto.JPG" alt="Groepsfoto"></figure>
-      </section>
-
-      <section id="reflection">
-        <h2>Reflectie</h2>
-        <div class="reflection">
-          <p>
-            In deze reflectie beschrijf ik hoe de bedrijfsbezoeken en praktijk­activiteiten mijn ontwikkeling als persoon hebben beïnvloed.
-          </p>
-          <ul>
-            <li><strong>Wat heb ik geleerd?</strong> Ik heb geleerd hoe belangrijk en veelgebruikt data is en waarvoor dit kan dienen of dat dit nu in de zorgsector, IT of iets anders is. Bovendien kan ik nu beter data interpreteren dan voordien. Maar naast technische kennis heb ik ook sociale kennis verworven en helpt dit mij ontwikkelen als persoon.</li><br>
-            <li><strong>Toepassing komend jaar</strong> Hopelijk door nu te beseffen waarvoor data gebruikt kan worden en op wat voor een schaal dit meestal gebeurd, kan dit mij meer motiveren in het komende semester.</li><br>
-            <li><strong>Professionele groei</strong> Ik denk dat ik dit zowat beantwoord heb in de vorige paragrafen. Hopelijk is dat voldoende.</li><br>
-            <li><strong>Toekomstige doelen</strong> Voorlopig zou ik gewoon willen afstuderen en kort daarna beginnen werken in de IT-sector alleen nog niet zeker hoe, waar of wat. Ik denk dat ik nogmaals voor de trial & error methode zal gaan...</li><br>
-          </ul>
-        </div>
-      </section>
-
-      <footer>Gemaakt door <strong>Joppe Janssens</strong></footer>
+        <footer>Gemaakt door <strong>Joppe Janssens</strong></footer>
     </div>
 
     <script>
-      document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click',e=>{
-          e.preventDefault();
-          document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
         });
-      });
     </script>
-  </body>
+</body>
+
 </html>
